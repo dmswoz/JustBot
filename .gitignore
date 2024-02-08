@@ -5,6 +5,7 @@ assets/
 
 # Dependency files
 application.yml
+Config.ts
 
 # Logs
 logs/
