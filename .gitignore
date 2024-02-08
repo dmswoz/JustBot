@@ -1,0 +1,16 @@
+# Dependency directories
+node_modules/
+Lavalink/
+assets/
+
+# Dependency files
+application.yml
+
+# Logs
+logs/
+
+# Dotenv environment variables file
+*.env
+
+# Build output
+dist/

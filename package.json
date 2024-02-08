@@ -1,0 +1,42 @@
+{
+  "name": "justbot",
+  "version": "1.0.0",
+  "main": "dist/Index.js",
+  "scripts": {
+    "start": "node .",
+    "start:dev": "tsc && nodemon ./src/Index.ts",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "prettier": "prettier --write **/*.{ts,js,json,yml,yaml}",
+    "build": "tsc",
+    "build:check": "tsc --noEmit --incremental false",
+    "update": "yarn upgrade-interactive"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@sapphire/framework": "^5.0.7",
+    "@sapphire/plugin-logger": "^4.0.2",
+    "discord.js": "^14.14.1",
+    "dokdo": "0.6.2",
+    "dotenv": "^16.4.1",
+    "kazagumo": "^3.0.1",
+    "moment-timezone": "^0.5.45",
+    "shoukaku": "^4.0.1",
+    "winston": "^3.11.0",
+    "winston-daily-rotate-file": "^4.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-promise": "^6.0.0",
+    "prettier": "^3.2.5",
+    "typescript": "*"
+  }
+}
