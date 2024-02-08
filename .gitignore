@@ -5,7 +5,7 @@ assets/
 
 # Dependency files
 application.yml
-Config.ts
+OwnerOnly.ts
 
 # Logs
 logs/
