@@ -12,12 +12,17 @@ RUN apt update && apt install -y --no-install-recommends \
 # Set workdir
 WORKDIR /opt/justbot
 
+# Dependencies Check
+COPY package.json yarn.lock ./
+
+# Install client dependencies
+RUN yarn install --immutable
+
 # Copy files
 COPY . .
 
-# Install client dependencies and build files
-RUN yarn install --immutable \
-    && yarn build
+# Build files
+RUN yarn build
 
 # Run client
 CMD yarn start
