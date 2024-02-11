@@ -7,6 +7,7 @@ export class Formatter {
       : moment(date).format("Asia/Seoul");
   }
 
+  /** Code Source: https://github.com/SiruBOT/SiruBOT */
   public static humanizeSec(sec: number, ms?: boolean): string {
     if (ms) sec = sec / 1000;
     const hrs = Math.floor(sec / 3600);
