@@ -5,6 +5,7 @@ import "@sapphire/plugin-logger/register";
 import { Kazagumo } from "kazagumo";
 import { Connectors } from "shoukaku";
 import Dokdo from "dokdo";
+import { Formatter } from "../lib/Formatter";
 
 config();
 
@@ -92,12 +93,10 @@ export class JustClient extends SapphireClient {
     );
 
     // this.audio.on("playerStart", (player, track) => {
-    //   (this.channels.cache.get(player.textId!) as TextChannel)
-    //     .send({
-    //       content: `>`
-    //     })
-    //     .then((x) => player.data.set("message", x));
-    // });
+    //   (this.channels.cache.get(player.textId!) as TextChannel).send({
+    //     content: `> 재생 시작: **${track.title} [${track.isStream ? "라이브 스트림" : Formatt}]**`
+    //   })
+    // })
   }
 
   public async start() {
