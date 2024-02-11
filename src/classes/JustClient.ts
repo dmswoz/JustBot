@@ -92,11 +92,19 @@ export class JustClient extends SapphireClient {
       )
     );
 
-    // this.audio.on("playerStart", (player, track) => {
-    //   (this.channels.cache.get(player.textId!) as TextChannel).send({
-    //     content: `> 재생 시작: **${track.title} [${track.isStream ? "라이브 스트림" : Formatt}]**`
-    //   })
-    // })
+    this.audio.on("playerStart", (player, track) => {
+      (this.channels.cache.get(player.textId!) as TextChannel)
+        .send({
+          content: `> 🎶 재생을 시작할게요. **${track.title} [${track.isStream ? `라이브스트림` : Formatter.humanizeSec(track.length!, true)}]**`
+        })
+        .then((x) => player.data.set("message", x));
+    });
+    this.audio.on("playerEmpty", (player) => {
+      (this.channels.cache.get(player.textId!) as TextChannel).send({
+        content: `> 👋 대기열에 더 이상 예약된 음악이 없어 채널을 나왔어요.`
+      });
+      player.destroy();
+    });
   }
 
   public async start() {
