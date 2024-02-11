@@ -8,7 +8,7 @@ services:
     environment:
       LAVALINK_HOST: lavalink
     volumes:
-      - ./logs:/home/ubuntu/justbot/logs
+      - ./logs:/opt/justbot/logs
     depends_on:
       - lavalink
   lavalink:
