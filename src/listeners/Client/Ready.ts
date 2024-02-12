@@ -16,7 +16,7 @@ export class Ready extends Listener {
   public run(client: Client) {
     const { tag, id } = client.user!;
     this.container.logger.info(
-      `[JustBot:Ready] ${tag}(${id}) is ready to use.`
+      `[Client#JustBot:Ready] ${tag}(${id}) is ready to use.`
     );
   }
 }

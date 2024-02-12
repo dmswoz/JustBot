@@ -1,6 +1,7 @@
 import { config } from "dotenv";
+import * as Sentry from "@sentry/node";
 import { SapphireClient, LogLevel } from "@sapphire/framework";
-import { GatewayIntentBits, Message, TextChannel } from "discord.js";
+import { GatewayIntentBits, Message, TextChannel, EmbedBuilder } from "discord.js";
 import "@sapphire/plugin-logger/register";
 import { Kazagumo } from "kazagumo";
 import { Connectors } from "shoukaku";
@@ -71,11 +72,12 @@ export class JustClient extends SapphireClient {
         `[Plugin#Audio:Ready] Lavalink Node: ${name} is now connected. This connection is ${resumed ? "resumed" : "a new connection"}.`
       )
     );
-    this.audio.shoukaku.on("error", (name, error) =>
+    this.audio.shoukaku.on("error", (name, error) => {
       this.logger.error(
         `[Plugin#Audio:Error] Lavalink Node: ${name} emitted an error. ${error.stack}`
-      )
-    );
+      );
+      Sentry.captureException(error);
+    });
     this.audio.shoukaku.on("close", (name, code, reason) =>
       this.logger.warn(
         `[Plugin#Audio:Warn] Lavalink Node: ${name} closed with code ${code}. Reason: ${reason || "No reason."}`
@@ -108,7 +110,14 @@ export class JustClient extends SapphireClient {
   }
 
   public async start() {
-    await this._init();
-    return this.login(process.env.CLI_TOKEN);
+    this.logger.debug(`[Client#JustBot:Init] Load plugins, commands and listeners..`);
+    try {
+      await this._init();
+      this.logger.info(`[Client#JustBot:Login] Load complete. Client logging in..`);
+      this.login(process.env.CLI_TOKEN);
+    } catch(e) {
+      Sentry.captureException(e);
+      throw e;
+    }
   }
 }
