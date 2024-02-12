@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 import * as Sentry from "@sentry/node";
 import { SapphireClient, LogLevel } from "@sapphire/framework";
-import { GatewayIntentBits, Message, TextChannel, EmbedBuilder } from "discord.js";
+import { GatewayIntentBits, Message, TextChannel } from "discord.js";
 import "@sapphire/plugin-logger/register";
 import { Kazagumo } from "kazagumo";
 import { Connectors } from "shoukaku";
@@ -110,12 +110,16 @@ export class JustClient extends SapphireClient {
   }
 
   public async start() {
-    this.logger.debug(`[Client#JustBot:Init] Load plugins, commands and listeners..`);
+    this.logger.debug(
+      `[Client#JustBot:Init] Load plugins, commands and listeners..`
+    );
     try {
       await this._init();
-      this.logger.info(`[Client#JustBot:Login] Load complete. Client logging in..`);
+      this.logger.info(
+        `[Client#JustBot:Login] Load complete. Client logging in..`
+      );
       this.login(process.env.CLI_TOKEN);
-    } catch(e) {
+    } catch (e) {
       Sentry.captureException(e);
       throw e;
     }
