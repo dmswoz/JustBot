@@ -1,6 +1,6 @@
 import { Command } from "@sapphire/framework";
 
-export class Stop extends Command {
+export class Pause extends Command {
   public constructor(context: Command.LoaderContext, options: Command.Options) {
     super(context, {
       ...options,
@@ -17,10 +17,10 @@ export class Stop extends Command {
   public override registerApplicationCommands(registry: Command.Registry) {
     registry.registerChatInputCommand((builder) =>
       builder
-        .setName(`stop`)
-        .setDescription(`Stop the player and reset the queue.`)
+        .setName(`pause`)
+        .setDescription(`Pause the music.`)
         .setDescriptionLocalizations({
-          ko: `재생중인 음악을 정지하고 대기열을 초기화 해요.`
+          ko: `재생중인 음악을 일시정지/다시재생 합니다.`
         })
     );
   }
@@ -35,9 +35,9 @@ export class Stop extends Command {
         ephemeral: true
       });
 
-    player.destroy();
+    player.pause(player.playing);
     return interaction.reply({
-      content: `> 👋 재생중인 음악을 정지하고 대기열을 초기화 했어요.`
+      content: `> ✅ 음악을 ${player.paused ? "일시정지" : "다시재생"} 합니다.`
     });
   }
 }
