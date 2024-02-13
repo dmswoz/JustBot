@@ -19,4 +19,10 @@ export class Formatter {
       .filter((v, i) => v !== "00" || i > 0)
       .join(":");
   }
+
+  public static volumeInt(vol: number): string {
+    if (vol > 60) return "🔊";
+    if (vol > 0) return "🔉";
+    else return "🔇";
+  }
 }
