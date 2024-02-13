@@ -8,7 +8,7 @@ config();
 const client = new JustClient();
 
 // Sentry init
-if (process.env.SENTRY_DSN && Catcher.isURL(process.env.SENTRY_DSN as string)) {
+if (process.env.SENTRY_DSN && Catcher.isURL(process.env.SENTRY_DSN as string) && process.env.NODE_ENV === `production`) {
   client.logger.info(`[Catcher#Sentry:Info] Sentry is now enabled.`);
   Sentry.init({
     dsn: process.env.SENTRY_DSN,
