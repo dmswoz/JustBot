@@ -4,6 +4,8 @@ import { SapphireClient, LogLevel } from "@sapphire/framework";
 import { GatewayIntentBits, Message, TextChannel } from "discord.js";
 import "@sapphire/plugin-logger/register";
 import { Kazagumo } from "kazagumo";
+// import Spotify from "kazagumo-spotify";
+import Apple from "kazagumo-apple";
 import { Connectors } from "shoukaku";
 import Dokdo from "dokdo";
 import { Formatter } from "../lib/Formatter";
@@ -51,6 +53,18 @@ export class JustClient extends SapphireClient {
     this.audio = new Kazagumo(
       {
         defaultSearchEngine: "youtube",
+        plugins: [
+          // new Spotify({
+          //   clientId: process.env.SPOTIFY_ID,
+          //   clientSecret: process.env.SPOTIFY_SECRET,
+          //   searchMarket: "KR"
+          // }),
+          new Apple({
+            countryCode: "KR",
+            imageWidth: 600,
+            imageHeight: 900
+          })
+        ],
         send: (guildId, payload) => {
           const guild = this.guilds.cache.get(guildId);
           if (guild) guild.shard.send(payload);

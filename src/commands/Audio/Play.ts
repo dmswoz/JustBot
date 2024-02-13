@@ -17,38 +17,37 @@ export class Play extends Command {
   }
 
   public override registerApplicationCommands(registry: Command.Registry) {
-    registry.registerChatInputCommand(
-      (builder) =>
-        builder
-          .setName(`play`)
-          .setDescription(`Play a track or playlist.`)
-          .setDescriptionLocalizations({
-            ko: `음악 또는 플레이리스트를 재생해요.`
-          })
-          .addStringOption((option) =>
-            option
-              .setName(`query`)
-              .setNameLocalizations({
-                ko: `검색어`
-              })
-              .setDescription(`Query to search and play.`)
-              .setDescriptionLocalizations({
-                ko: `재생하고자 하는 음악의 제목, URL을 입력하세요.`
-              })
-              .setRequired(true)
-          )
-      // .addBooleanOption((option) =>
-      //     option
-      //         .setName(`spotify`)
-      //         .setNameLocalizations({
-      //             ko: `스포티파이`
-      //         })
-      //         .setDescription(`Search query on Spotify.`)
-      //         .setDescriptionLocalizations({
-      //             ko: `Spotify에서 음악을 검색해요.`
-      //         })
-      //         .setRequired(false)
-      // )
+    registry.registerChatInputCommand((builder) =>
+      builder
+        .setName(`play`)
+        .setDescription(`Play a track or playlist.`)
+        .setDescriptionLocalizations({
+          ko: `음악 또는 플레이리스트를 재생해요.`
+        })
+        .addStringOption((option) =>
+          option
+            .setName(`query`)
+            .setNameLocalizations({
+              ko: `검색어`
+            })
+            .setDescription(`Query to search and play.`)
+            .setDescriptionLocalizations({
+              ko: `재생하고자 하는 음악의 제목, URL을 입력하세요.`
+            })
+            .setRequired(true)
+        )
+        .addBooleanOption((option) =>
+          option
+            .setName(`applemusic`)
+            .setNameLocalizations({
+              ko: `애플뮤직`
+            })
+            .setDescription(`Search query on Apple Music.`)
+            .setDescriptionLocalizations({
+              ko: `애플뮤직에서 음악을 재생해요.`
+            })
+            .setRequired(false)
+        )
     );
   }
 
@@ -91,9 +90,9 @@ export class Play extends Command {
     const player = await this.container.client.audio.getPlayer(
       interaction.guildId!
     );
-    // const sc = interaction.options.getBoolean(`spotify`, false);
+    const ap = interaction.options.getBoolean(`applemusic`, false);
     const searchResult = await this.container.client.audio.search(query, {
-      engine: /** sc ? `spotify` : */ `youtube`,
+      engine: ap ? `apple` : `youtube`,
       requester: interaction.user
     });
 
