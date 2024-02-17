@@ -11,9 +11,9 @@ const client = new JustClient();
 if (
   process.env.SENTRY_DSN &&
   Catcher.isURL(process.env.SENTRY_DSN as string) &&
-  process.env.NODE_ENV === `production`
+  process.env.NODE_ENV === "production"
 ) {
-  client.logger.info(`[Catcher#Sentry:Info] Sentry is now enabled.`);
+  client.logger.info("[Catcher#Sentry:Info] Sentry is now enabled.");
   Sentry.init({
     dsn: process.env.SENTRY_DSN,
     integrations: [
@@ -24,7 +24,7 @@ if (
   });
 } else {
   client.logger.warn(
-    `[Catcher#Sentry:Warn] Sentry is disabled. Please check the DSN.`
+    "[Catcher#Sentry:Warn] Sentry is disabled. Please check the DSN."
   );
 }
 
@@ -43,7 +43,7 @@ const unhandledRejection = (
   });
 };
 
-client.logger.info(`[Client#JustBot:Start] Pre-Cfg success. Client setup..`);
+client.logger.info("[Client#JustBot:Start] Pre-Cfg success. Client setup..");
 client
   .start()
   .then(() => {

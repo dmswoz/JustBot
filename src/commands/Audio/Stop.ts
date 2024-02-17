@@ -17,10 +17,10 @@ export class Stop extends Command {
   public override registerApplicationCommands(registry: Command.Registry) {
     registry.registerChatInputCommand((builder) =>
       builder
-        .setName(`stop`)
-        .setDescription(`Stop the player and reset the queue.`)
+        .setName("stop")
+        .setDescription("Stop the player and reset the queue.")
         .setDescriptionLocalizations({
-          ko: `재생중인 음악을 정지하고 대기열을 초기화 해요.`
+          ko: "재생중인 음악을 정지하고 대기열을 초기화 해요."
         })
     );
   }
@@ -31,13 +31,13 @@ export class Stop extends Command {
     );
     if (!player)
       return interaction.reply({
-        content: `> ⚠️ 음악을 재생중일 때만 사용할 수 있어요.`,
+        content: "> ⚠️ 음악을 재생중일 때만 사용할 수 있어요.",
         ephemeral: true
       });
 
     player.destroy();
     return interaction.reply({
-      content: `> 👋 재생중인 음악을 정지하고 대기열을 초기화 했어요.`
+      content: "> 👋 재생중인 음악을 정지하고 대기열을 초기화 했어요."
     });
   }
 }

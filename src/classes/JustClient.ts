@@ -117,7 +117,7 @@ export class JustClient extends SapphireClient {
     });
     this.audio.on("playerEmpty", (player) => {
       (this.channels.cache.get(player.textId!) as TextChannel).send({
-        content: `> 👋 대기열에 더 이상 예약된 음악이 없어 채널을 나왔어요.`
+        content: "> 👋 대기열에 더 이상 예약된 음악이 없어 채널을 나왔어요."
       });
       player.destroy();
     });
@@ -125,18 +125,18 @@ export class JustClient extends SapphireClient {
 
   public async start() {
     this.logger.debug(
-      `[Client#JustBot:Init] Load plugins, commands and listeners..`
+      "[Client#JustBot:Init] Load plugins, commands and listeners.."
     );
     try {
       await this._init();
-      if (process.env.NODE_ENV === `production`) {
+      if (process.env.NODE_ENV === "production") {
         this.logger.info(
-          `[Client#JustBot:Login] Load complete. Client logging in..`
+          "[Client#JustBot:Login] Load complete. Client logging in.."
         );
         this.login(process.env.CLI_TOKEN);
-      } else if (process.env.NODE_ENV === `development`) {
+      } else if (process.env.NODE_ENV === "development") {
         this.logger.info(
-          `[Client#JustBot#DEVELOPMENT:Login] Load complete. Client logging in..`
+          "[Client#JustBot#DEVELOPMENT:Login] Load complete. Client logging in.."
         );
         this.login(process.env.CLI_DEV_TOKEN);
       }

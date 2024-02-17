@@ -12,10 +12,10 @@ export class Ping extends Command {
   public override registerApplicationCommands(registry: Command.Registry) {
     registry.registerChatInputCommand((builder) =>
       builder
-        .setName(`ping`)
-        .setDescription(`Replies with pong.`)
+        .setName("ping")
+        .setDescription("Replies with pong.")
         .setDescriptionLocalizations({
-          ko: `봇의 반응속도를 알려드려요.`
+          ko: "봇의 반응속도를 알려드려요."
         })
     );
   }

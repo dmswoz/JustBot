@@ -8,7 +8,7 @@ export class Messages {
       content: `> ✅ **${result.tracks[0].title} [${result.tracks[0].isStream ? `라이브스트림` : Formatter.humanizeSec(result.tracks[0].length!, true)}]**이 곧 재생됩니다.`,
       embeds: [
         new EmbedBuilder()
-          .setTitle(`🗂️ 플레이리스트`)
+          .setTitle("🗂️ 플레이리스트")
           .setDescription(
             `플레이리스트 **${result.playlistName}**의 음악 **${result.tracks.length - 1}개**를 대기열에 추가했어요.`
           )
@@ -25,7 +25,7 @@ export class Messages {
       content: `> ✅ **${result.tracks[0].title} [${result.tracks[0].isStream ? `라이브스트림` : Formatter.humanizeSec(result.tracks[0].length!, true)}]**을 대기열 **#${player.queue && player.queue.length + 1}**에 추가했어요.`,
       embeds: [
         new EmbedBuilder()
-          .setTitle(`🗂️ 플레이리스트`)
+          .setTitle("🗂️ 플레이리스트")
           .setDescription(
             `플레이리스트 **${result.playlistName}**의 음악 **${result.tracks.length - 1}개**를 대기열에 추가했어요.`
           )
@@ -39,7 +39,7 @@ export class Messages {
     interaction: User /**, sc: Boolean*/
   ) {
     return {
-      content: `> ✅ 음악이 곧 재생됩니다.`,
+      content: "> ✅ 음악이 곧 재생됩니다.",
       embeds: [
         new EmbedBuilder()
           .setAuthor({

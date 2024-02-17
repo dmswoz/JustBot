@@ -19,32 +19,32 @@ export class Play extends Command {
   public override registerApplicationCommands(registry: Command.Registry) {
     registry.registerChatInputCommand((builder) =>
       builder
-        .setName(`play`)
-        .setDescription(`Play a track or playlist.`)
+        .setName("play")
+        .setDescription("Play a track or playlist.")
         .setDescriptionLocalizations({
-          ko: `음악 또는 플레이리스트를 재생해요.`
+          ko: "음악 또는 플레이리스트를 재생해요."
         })
         .addStringOption((option) =>
           option
-            .setName(`query`)
+            .setName("query")
             .setNameLocalizations({
-              ko: `검색어`
+              ko: "검색어"
             })
-            .setDescription(`Query to search and play.`)
+            .setDescription("Query to search and play.")
             .setDescriptionLocalizations({
-              ko: `재생하고자 하는 음악의 제목, URL을 입력하세요.`
+              ko: "재생하고자 하는 음악의 제목, URL을 입력하세요."
             })
             .setRequired(true)
         )
         .addBooleanOption((option) =>
           option
-            .setName(`applemusic`)
+            .setName("applemusic")
             .setNameLocalizations({
-              ko: `애플뮤직`
+              ko: "애플뮤직"
             })
-            .setDescription(`Search query on Apple Music.`)
+            .setDescription("Search query on Apple Music.")
             .setDescriptionLocalizations({
-              ko: `애플뮤직에서 음악을 재생해요.`
+              ko: "애플뮤직에서 음악을 재생해요."
             })
             .setRequired(false)
         )
@@ -52,13 +52,13 @@ export class Play extends Command {
   }
 
   public async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-    const query: string = interaction.options.getString(`query`, true);
+    const query: string = interaction.options.getString("query", true);
 
     if (!this.container.client.audio.getPlayer(interaction.guildId!)) {
       const { voice } = interaction.member as GuildMember;
       if (!voice.channel)
         return interaction.reply({
-          content: `> ⚠️ 요청 거부됨. 음성채널에 먼저 접속해야 합니다.`,
+          content: "> ⚠️ 요청 거부됨. 음성채널에 먼저 접속해야 합니다.",
           ephemeral: true
         });
 
@@ -72,7 +72,7 @@ export class Play extends Command {
         });
       } catch (e) {
         return interaction.reply({
-          content: `> ❗ 실패. 음성채널 접속에 실패했어요. 다시시도 해주세요.`,
+          content: "> ❗ 실패. 음성채널 접속에 실패했어요. 다시시도 해주세요.",
           ephemeral: true
         });
       }
@@ -81,12 +81,12 @@ export class Play extends Command {
     const player = await this.container.client.audio.getPlayer(
       interaction.guildId!
     );
-    const ap = interaction.options.getBoolean(`applemusic`, false);
+    const ap = interaction.options.getBoolean("applemusic", false);
 
     await interaction.deferReply();
 
     const searchResult = await this.container.client.audio.search(query, {
-      engine: ap ? `apple` : `youtube`,
+      engine: ap ? "apple" : "youtube",
       requester: interaction.user
     });
 
@@ -96,8 +96,7 @@ export class Play extends Command {
           interaction.reply(
             await Messages.getPlaylistQueueEmbed(searchResult, player!)
           );
-        } else
-          interaction.reply(await Messages.getPlaylistEmbed(searchResult));
+        } else interaction.reply(await Messages.getPlaylistEmbed(searchResult));
       } else
         interaction.reply(
           await Messages.getPlaylistQueueEmbed(searchResult, player!)

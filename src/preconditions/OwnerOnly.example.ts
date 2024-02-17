@@ -13,7 +13,7 @@ export class OwnerOnly extends Precondition {
   private async checkOwner(userId: string) {
     return ["OWNERID1"].includes(userId)
       ? this.ok()
-      : this.error({ message: `> ⚠️ 요청 거부됨. 권한을 확인하세요.` });
+      : this.error({ message: "> ⚠️ 요청 거부됨. 권한을 확인하세요." });
   }
 }
 
