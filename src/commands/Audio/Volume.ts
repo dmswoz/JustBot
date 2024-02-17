@@ -67,7 +67,7 @@ export class Volume extends Command {
       }
 
       player.setVolume(volume);
-      interaction.reply({
+      return interaction.reply({
         content: `> ✅ 음량을 **${player.volume * 100}%**로 설정했어요.`
       });
     }

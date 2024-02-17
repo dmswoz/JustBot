@@ -4,7 +4,7 @@
   "main": "dist/Index.js",
   "scripts": {
     "start": "node .",
-    "start:dev": "tsc && nodemon ./src/Index.ts",
+    "start:dev": "nodemon ./src/Index.ts",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
     "prettier": "prettier --write **/*.{ts,js,json,yml,yaml}",

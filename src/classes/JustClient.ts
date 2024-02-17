@@ -129,10 +129,17 @@ export class JustClient extends SapphireClient {
     );
     try {
       await this._init();
-      this.logger.info(
-        `[Client#JustBot:Login] Load complete. Client logging in..`
-      );
-      this.login(process.env.CLI_TOKEN);
+      if (process.env.NODE_ENV === `production`) {
+        this.logger.info(
+          `[Client#JustBot:Login] Load complete. Client logging in..`
+        );
+        this.login(process.env.CLI_TOKEN);
+      } else if (process.env.NODE_ENV === `development`) {
+        this.logger.info(
+          `[Client#JustBot#DEVELOPMENT:Login] Load complete. Client logging in..`
+        );
+        this.login(process.env.CLI_DEV_TOKEN);
+      }
     } catch (e) {
       Sentry.captureException(e);
       throw e;

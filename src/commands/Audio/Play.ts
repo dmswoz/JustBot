@@ -53,13 +53,6 @@ export class Play extends Command {
 
   public async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
     const query: string = interaction.options.getString(`query`, true);
-    if (query.length <= 0) {
-      await interaction.reply({
-        content: `💡 검색어 또는 URL을 입력해야 합니다.`,
-        ephemeral: true
-      });
-      return;
-    }
 
     if (!this.container.client.audio.getPlayer(interaction.guildId!)) {
       const { voice } = interaction.member as GuildMember;
@@ -78,19 +71,20 @@ export class Play extends Command {
           deaf: true
         });
       } catch (e) {
-        return await interaction.reply({
+        return interaction.reply({
           content: `> ❗ 실패. 음성채널 접속에 실패했어요. 다시시도 해주세요.`,
           ephemeral: true
         });
       }
     }
 
-    await interaction.deferReply();
-
     const player = await this.container.client.audio.getPlayer(
       interaction.guildId!
     );
     const ap = interaction.options.getBoolean(`applemusic`, false);
+
+    await interaction.deferReply();
+
     const searchResult = await this.container.client.audio.search(query, {
       engine: ap ? `apple` : `youtube`,
       requester: interaction.user
@@ -99,13 +93,13 @@ export class Play extends Command {
     if (searchResult.type === "PLAYLIST") {
       if (player!.queue.length <= 0) {
         if (player!.playing || player!.paused) {
-          interaction.editReply(
+          interaction.reply(
             await Messages.getPlaylistQueueEmbed(searchResult, player!)
           );
         } else
-          interaction.editReply(await Messages.getPlaylistEmbed(searchResult));
+          interaction.reply(await Messages.getPlaylistEmbed(searchResult));
       } else
-        interaction.editReply(
+        interaction.reply(
           await Messages.getPlaylistQueueEmbed(searchResult, player!)
         );
 
@@ -113,7 +107,7 @@ export class Play extends Command {
     } else if (searchResult.type === "SEARCH") {
       if (player!.queue.length <= 0) {
         if (player!.playing || player!.paused) {
-          interaction.editReply(
+          interaction.reply(
             await Messages.getTrackQueueEmbed(
               searchResult,
               player!,
@@ -121,11 +115,11 @@ export class Play extends Command {
             )
           );
         } else
-          interaction.editReply(
+          interaction.reply(
             await Messages.getTrackEmbed(searchResult, interaction.user)
           );
       } else
-        interaction.editReply(
+        interaction.reply(
           await Messages.getTrackQueueEmbed(
             searchResult,
             player!,
