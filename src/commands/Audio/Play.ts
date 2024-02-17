@@ -78,13 +78,12 @@ export class Play extends Command {
       }
     }
 
+    await interaction.deferReply();
+
     const player = await this.container.client.audio.getPlayer(
       interaction.guildId!
     );
     const ap = interaction.options.getBoolean("applemusic", false);
-
-    await interaction.deferReply();
-
     const searchResult = await this.container.client.audio.search(query, {
       engine: ap ? "apple" : "youtube",
       requester: interaction.user
