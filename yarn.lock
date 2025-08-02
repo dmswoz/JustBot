@@ -2172,13 +2172,20 @@ kazagumo-spotify@^2.1.1:
   dependencies:
     undici "^6.19.2"
 
-kazagumo@^3.0.0, kazagumo@^3.0.1:
+kazagumo@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/kazagumo/-/kazagumo-3.0.1.tgz#77918e901f1d5679feee7765dbfae4ade0dd2972"
   integrity sha512-I4eD7JOScqY+xtAE8O5M5d5/ro18wv4j9GHwNvQKW7yGL5eGlgy/LGgdlWCWg+webEtcagImYOIaH5x1c3poTw==
   dependencies:
     events "^3.3.0"
     shoukaku "^4.0.1"
+
+kazagumo@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/kazagumo/-/kazagumo-3.3.0.tgz#a8c7af3bef605b8b5c490e853c5be4b3b537bbdb"
+  integrity sha512-JfCkxx0VisxoWipOYhFbtWNcnt9RqZy7iBVpB9k+Q4nYyB1bdhJmZte/RdyWHmTC7nm90l0nq9oG4XpSB87ZaA==
+  dependencies:
+    shoukaku "^4.1.0"
 
 keyv@^4.5.3:
   version "4.5.4"
@@ -2771,6 +2778,13 @@ shoukaku@^4.0.1:
   dependencies:
     ws "^8.14.2"
 
+shoukaku@^4.1.0:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/shoukaku/-/shoukaku-4.1.1.tgz#ce0e3440be7c59fa470c72b33fc968d8a02af9b4"
+  integrity sha512-E7xXqjQ38TJu9gps95zVe8LaWhBhUyZvGFbO0mNAkBywm/DieDP0HSs9fAT97lL7vVZldkay2tmFhllNLboUbg==
+  dependencies:
+    ws "^8.18.0"
+
 side-channel-list@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/side-channel-list/-/side-channel-list-1.0.0.tgz#10cb5984263115d3b7a0e336591e290a830af8ad"
@@ -3319,6 +3333,11 @@ ws@^8.14.2:
   version "8.16.0"
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.16.0.tgz#d1cd774f36fbc07165066a60e40323eab6446fd4"
   integrity sha512-HS0c//TP7Ina87TfiPUz1rQzMhHrl/SG2guqRcTOIUYD2q8uhUdNHZYJUaQ8aTGPzCh+c6oawMKW35nFl1dxyQ==
+
+ws@^8.18.0:
+  version "8.18.3"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.18.3.tgz#b56b88abffde62791c639170400c93dcb0c95472"
+  integrity sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==
 
 yallist@^4.0.0:
   version "4.0.0"
