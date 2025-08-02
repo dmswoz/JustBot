@@ -24,7 +24,7 @@
     "kazagumo": "^3.0.1",
     "kazagumo-apple": "^2.0.1",
     "kazagumo-spotify": "^2.1.1",
-    "moment-timezone": "^0.5.45",
+    "moment-timezone": "^0.6.0",
     "shoukaku": "^4.0.1",
     "winston": "^3.11.0",
     "winston-daily-rotate-file": "^4.7.1"
