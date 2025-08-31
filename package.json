@@ -18,7 +18,7 @@
     "@sapphire/plugin-logger": "^4.1.0",
     "@sentry/integrations": "^7.114.0",
     "@sentry/node": "^7.120.4",
-    "discord.js": "^14.14.1",
+    "discord.js": "^14.22.1",
     "dokdo": "0.6.2",
     "dotenv": "^16.6.1",
     "kazagumo": "^3.0.1",
