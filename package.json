@@ -20,7 +20,7 @@
     "@sentry/node": "^7.120.4",
     "discord.js": "^14.14.1",
     "dokdo": "0.6.2",
-    "dotenv": "^16.6.1",
+    "dotenv": "^17.2.2",
     "kazagumo": "^3.0.1",
     "kazagumo-apple": "^2.0.1",
     "kazagumo-spotify": "^2.1.1",
